@@ -79,4 +79,74 @@ Each approach has strengths and trade-offs:
 - **For robustness against varied deepfake attacks:** **Feature Fusion-Based Detection** provides the best generalization.
 
 
+## read me for code
+
+# ASVspoof Detection Using Deep Learning
+
+## Overview
+This project implements a binary classification model to detect spoofed (fake) and real audio using deep learning. The model processes `.wav` files, extracts features, and classifies the audio using a simple convolutional neural network (CNN) inspired by RawNet.
+
+## Features
+- Uses `librosa` for audio preprocessing.
+- Fixed-length audio input for consistency.
+- Binary classification with a simple 1D-CNN architecture.
+- Trained using Binary Cross Entropy Loss (`BCELoss`).
+- Includes accuracy calculation during training.
+
+## Installation
+### Prerequisites
+Ensure you have Python installed (preferably Python 3.8 or later).
+
+### Install Dependencies
+```sh
+pip install torch torchvision torchaudio librosa numpy
+```
+
+## Dataset Preparation
+1. **Folder Structure:**
+   ```
+   train/
+   ├── real/   # Contains real audio samples
+   └── fake/   # Contains spoofed audio samples
+   ```
+2. Place `.wav` files in the `real/` and `fake/` directories.
+
+## Running the Model
+### Training
+Run the Python script to train the model:
+```sh
+python train.py
+```
+### Output
+Each epoch prints:
+```
+Epoch 1, Loss: 0.4321, Accuracy: 78.12%
+Epoch 2, Loss: 0.3876, Accuracy: 82.50%
+...
+Training complete!
+```
+
+## Model Details
+- **Architecture:**
+  - 1D Convolutional layer
+  - ReLU activation
+  - Fully connected output layer
+  - Sigmoid activation for binary classification
+- **Optimizer:** Adam (`lr=0.001`)
+- **Loss Function:** Binary Cross Entropy (`BCELoss`)
+
+## Notes
+- The model expects all audio files to be resampled to **8 kHz**.
+- Audio samples should have a **fixed length** (default: 32000 samples).
+- The training dataset must be balanced for better performance.
+
+## Future Improvements
+- Implement more complex architectures like RawNet2.
+- Use data augmentation to improve generalization.
+- Implement a real-time inference system.
+
+---
+### Author
+[Devyansh]
+
 
